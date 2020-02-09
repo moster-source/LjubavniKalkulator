@@ -1,0 +1,2 @@
+# LjubavniKalkulator
+ Ljubavni kalkulator
