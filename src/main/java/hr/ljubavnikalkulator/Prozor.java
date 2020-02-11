@@ -91,9 +91,8 @@ public class Prozor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIzracunajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzracunajActionPerformed
-        // TODO add your handling code here:
-        
-//makni sve razmake i prebaci u mala slova
+                
+        //makni sve razmake i prebaci u mala slova
         String strImenaTemp = txtOna.getText().toLowerCase().strip().concat(txtOn.getText().toLowerCase().strip());
         //prebaci u char da mozes sortirati
         char[] charArray = strImenaTemp.toCharArray();
@@ -106,7 +105,6 @@ public class Prozor extends javax.swing.JFrame {
         
         char temp;
         char temp2;
-        char temp3;
         int duzina = strImena.length();
         int broj = 1;
         int[] arrayJedan= new int[duzina];
@@ -136,8 +134,8 @@ public class Prozor extends javax.swing.JFrame {
                 brojac++;
             }
         }
-        //arrayJedan sadrzi original brojeve it slova
-        ispisiNiz(arrayJedan);
+        //arrayJedan sadrzi original brojeve iz slova
+        ispisiNiz(arrayJedan); // ispisuje da se vidi output
         
         //pozivanje metode za izracunavanje postotka
         String konacno = vratiPostotak(arrayJedan);
@@ -165,17 +163,22 @@ public class Prozor extends javax.swing.JFrame {
     }
     
     private String vratiPostotak(int[] arrayJedan) {
+        //zbraja prvi i drugi broj iz jednog niza i popunjava drugi niz
+        //potom brise prvi niz i popunjava ga iz drugog niza, i u krug dok 
+        //ne dobije samo dva broja
+        
         int[] arrayTemp1 = new int[arrayJedan.length];
         boolean kraj = false;
         int arrayTemp1Brojac;
-        int broj1=0;
-        int broj2=0;
+        int broj1;
+        int broj2;
         
+        //upotreba dva niza dok se ne dobiju samo dvije brojke
         while (!kraj) {
             arrayTemp1Brojac = 0;
             broj1=0;
             broj2=0;
-            Arrays.fill(arrayTemp1, 0);  //upotreba dva niza dok se ne dobiju samo dvije brojke
+            Arrays.fill(arrayTemp1, 0);  //obrisi drugi niz za novi krug
             
             for (int x =0; x<arrayJedan.length;x++) {
                 
