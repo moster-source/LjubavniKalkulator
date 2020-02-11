@@ -102,14 +102,14 @@ public class Prozor extends javax.swing.JFrame {
         //sortirana rijec poslozena po slovima
         String strImena = String.valueOf(charArray);
         System.out.println(strImenaTemp + " " + strImena);
-        
+
         char temp;
         char temp2;
         int duzina = strImena.length();
         int broj = 1;
-        int[] arrayJedan= new int[duzina];
-        int brojac=0;
-        
+        int[] arrayJedan = new int[duzina];
+        int brojac = 0;
+
         //ova petlja pravi prvi niz sa brojevima umjesto slova
         for (int i = 0; i < duzina; i++) {
 
@@ -136,13 +136,13 @@ public class Prozor extends javax.swing.JFrame {
         }
         //arrayJedan sadrzi original brojeve iz slova
         ispisiNiz(arrayJedan); // ispisuje da se vidi output
-        
+
         //pozivanje metode za izracunavanje postotka
         String konacno = vratiPostotak(arrayJedan);
-        System.out.println(konacno+"%");
+        System.out.println(konacno + "%");
         lblPostotak.setText(konacno + "%");
-        
-  
+
+
     }//GEN-LAST:event_btnIzracunajActionPerformed
 
    
@@ -166,73 +166,80 @@ public class Prozor extends javax.swing.JFrame {
         //zbraja prvi i drugi broj iz jednog niza i popunjava drugi niz
         //potom brise prvi niz i popunjava ga iz drugog niza, i u krug dok 
         //ne dobije samo dva broja
-        
+
         int[] arrayTemp1 = new int[arrayJedan.length];
         boolean kraj = false;
         int arrayTemp1Brojac;
         int broj1;
         int broj2;
-        
+
         //upotreba dva niza dok se ne dobiju samo dvije brojke
         while (!kraj) {
             arrayTemp1Brojac = 0;
-            broj1=0;
-            broj2=0;
+            broj1 = 0;
+            broj2 = 0;
             Arrays.fill(arrayTemp1, 0);  //obrisi drugi niz za novi krug
-            
-            for (int x =0; x<arrayJedan.length;x++) {
-                
-                if (arrayJedan[x]>0) {
+
+            for (int x = 0; x < arrayJedan.length; x++) {
+
+                if (arrayJedan[x] > 0) {
                     arrayTemp1Brojac++;
-                    if(arrayTemp1Brojac<2){
-                        arrayTemp1[broj1]=arrayJedan[x];
-                        if(arrayTemp1[broj1]>9){arrayTemp1[broj1]=1;}
-                    }else{
-                        arrayTemp1[broj1]= arrayTemp1[broj1] + arrayJedan[x];
-                        arrayTemp1Brojac=0;
-                        if(arrayTemp1[broj1]>9){arrayTemp1[broj1]=1;}     //ako je broj veci od 10 stavi 1
+                    if (arrayTemp1Brojac < 2) {
+                        arrayTemp1[broj1] = arrayJedan[x];
+                        if (arrayTemp1[broj1] > 9) {
+                            arrayTemp1[broj1] = 1;
+                        }
+                    } else {
+                        arrayTemp1[broj1] = arrayTemp1[broj1] + arrayJedan[x];
+                        arrayTemp1Brojac = 0;
+                        if (arrayTemp1[broj1] > 9) {    //ako je broj veci od 10 stavi 1
+                            arrayTemp1[broj1] = 1;
+                        }     
                         broj1++;
                     }
                     broj2++;
                 }
-                
-                    }
-            if(arrayTemp1[2]==0){
+
+            }
+            if (arrayTemp1[2] == 0) {
                 return (Integer.toString(arrayTemp1[0]).concat(Integer.toString(arrayTemp1[1]))); //vraca string
             }
             ispisiNiz(arrayTemp1);
-            
-            
+
             ////////////////drugi dio brise prvi niz i stavlja sve u drugi i u kgrug
             arrayTemp1Brojac = 0;
-            broj1=0;
-            broj2=0;
+            broj1 = 0;
+            broj2 = 0;
             Arrays.fill(arrayJedan, 0);
-                        for (int x =0; x<arrayTemp1.length;x++) {
-                
-                if (arrayTemp1[x]>0) {
+            for (int x = 0; x < arrayTemp1.length; x++) {
+
+                if (arrayTemp1[x] > 0) {
                     arrayTemp1Brojac++;
-                    if(arrayTemp1Brojac<2){
-                        arrayJedan[broj1]=arrayTemp1[x];
-                        if(arrayJedan[broj1]>9){arrayJedan[broj1]=1;}
-                        
-                    }else{
-                        arrayJedan[broj1]= arrayJedan[broj1] + arrayTemp1[x];
-                        arrayTemp1Brojac=0;
-                        if(arrayJedan[broj1]>9){arrayJedan[broj1]=1;}     //ako je broj veci od 10 stavi 1
+                    if (arrayTemp1Brojac < 2) {
+                        arrayJedan[broj1] = arrayTemp1[x];
+                        if (arrayJedan[broj1] > 9) {
+                            arrayJedan[broj1] = 1;
+                        }
+
+                    } else {
+                        arrayJedan[broj1] = arrayJedan[broj1] + arrayTemp1[x];
+                        arrayTemp1Brojac = 0;
+                        if (arrayJedan[broj1] > 9) {    //ako je broj veci od 10 stavi 1
+                            arrayJedan[broj1] = 1;
+                        }     
                         broj1++;
                     }
-                    
+
                     broj2++;
-                 
+
                 }
-                    }
-                        if(arrayJedan[2]==0){
-                return (Integer.toString(arrayJedan[0]).concat(Integer.toString(arrayJedan[1])));
-            }  
-                        ispisiNiz(arrayJedan);
-                }
-        
-               return "Greška :D";   
             }
+            if (arrayJedan[2] == 0) {
+                return (Integer.toString(arrayJedan[0]).concat(Integer.toString(arrayJedan[1])));
+            }
+            ispisiNiz(arrayJedan);
+        }
+
+        return "Greška :D";
+    }
         }
